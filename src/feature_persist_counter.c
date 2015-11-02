@@ -54,21 +54,24 @@ static void main_window_load(Window *window) {
 
   int width = layer_get_frame(window_layer).size.w - ACTION_BAR_WIDTH - 3;
 
-  s_header_layer = text_layer_create(GRect(4, 0, width, 60));
+  s_header_layer = text_layer_create(GRect(4, PBL_IF_RECT_ELSE(0, 30), width, 60));
   text_layer_set_font(s_header_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24));
   text_layer_set_background_color(s_header_layer, GColorClear);
   text_layer_set_text(s_header_layer, "Drink Counter");
+  text_layer_set_text_alignment(s_header_layer, PBL_IF_ROUND_ELSE(GTextAlignmentCenter, GTextAlignmentLeft));
   layer_add_child(window_layer, text_layer_get_layer(s_header_layer));
 
-  s_body_layer = text_layer_create(GRect(4, 44, width, 60));
+  s_body_layer = text_layer_create(GRect(4, PBL_IF_RECT_ELSE(44, 60), width, 60));
   text_layer_set_font(s_body_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
   text_layer_set_background_color(s_body_layer, GColorClear);
+  text_layer_set_text_alignment(s_body_layer, PBL_IF_ROUND_ELSE(GTextAlignmentCenter, GTextAlignmentLeft));
   layer_add_child(window_layer, text_layer_get_layer(s_body_layer));
 
-  s_label_layer = text_layer_create(GRect(4, 44 + 28, width, 60));
+  s_label_layer = text_layer_create(GRect(4, PBL_IF_RECT_ELSE(44, 60) + 28, width, 60));
   text_layer_set_font(s_label_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));
   text_layer_set_background_color(s_label_layer, GColorClear);
-  text_layer_set_text(s_label_layer, "of drinks on the wall");
+  text_layer_set_text(s_label_layer, "of beer on the wall");
+  text_layer_set_text_alignment(s_label_layer, PBL_IF_ROUND_ELSE(GTextAlignmentCenter, GTextAlignmentLeft));
   layer_add_child(window_layer, text_layer_get_layer(s_label_layer));
 
   update_text();
